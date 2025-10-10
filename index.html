@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakri and Sons Kirana Store - Your Local Online Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>Sakri & Sons Kirana Store</h1>
+                <p class="tagline">Your Trusted Neighborhood Store</p>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="page2.html">About Us</a>
+                <a href="#" id="adminLink" style="display: none;">Admin</a>
+            </div>
+            <div class="nav-actions">
+                <button class="login-btn" id="loginBtn">Login</button>
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <span class="user-name" id="userName"></span>
+                    <button class="logout-btn" id="logoutBtn">Logout</button>
+                </div>
+                <button class="cart-btn" id="cartBtn">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Welcome to Your Local Kirana Store</h2>
+                <p>Fresh groceries, dairy products, cold drinks, stationary and more delivered to your doorstep</p>
+                <button class="cta-btn" onclick="document.getElementById('categories').scrollIntoView({behavior: 'smooth'})">
+                    Shop Now
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="category-grid" id="categoryGrid"></div>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <div class="container">
+            <div class="products-header">
+                <h2 class="section-title">Our Products</h2>
+                <div class="filter-bar">
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">All Categories</option>
+                    </select>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search products...">
+                </div>
+            </div>
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+    </section>
+
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Shopping Cart</h2>
+                <button class="close-btn" id="closeCart">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems"></div>
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Total:</span>
+                        <span class="total-amount" id="cartTotal">₹0.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="continueShopping">Continue Shopping</button>
+                <button class="btn btn-primary" id="checkoutBtn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Checkout</h2>
+                <button class="close-btn" id="closeCheckout">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label for="customerName">Name *</label>
+                        <input type="text" id="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Phone *</label>
+                        <input type="tel" id="customerPhone" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">Email</label>
+                        <input type="email" id="customerEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryAddress">Delivery Address *</label>
+                        <textarea id="deliveryAddress" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderNotes">Order Notes</label>
+                        <textarea id="orderNotes" rows="2" placeholder="Any special instructions..."></textarea>
+                    </div>
+                    <div class="order-summary">
+                        <h3>Order Summary</h3>
+                        <div id="checkoutItems"></div>
+                        <div class="summary-total">
+                            <span>Total Amount:</span>
+                            <span class="total-amount" id="checkoutTotal">₹0.00</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="adminModal">
+        <div class="modal-content admin-modal">
+            <div class="modal-header">
+                <h2>Admin Panel</h2>
+                <button class="close-btn" id="closeAdmin">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="products">Products</button>
+                    <button class="tab-btn" data-tab="orders">Orders</button>
+                    <button class="tab-btn" data-tab="users">Users</button>
+                </div>
+                <div class="tab-content">
+                    <div id="productsTab" class="tab-pane active">
+                        <div class="admin-header">
+                            <h3>Manage Products</h3>
+                            <button class="btn btn-primary" id="addProductBtn">Add New Product</button>
+                        </div>
+                        <div class="admin-products-list" id="adminProductsList"></div>
+                    </div>
+                    <div id="ordersTab" class="tab-pane">
+                        <h3>Recent Orders</h3>
+                        <div class="admin-orders-list" id="adminOrdersList"></div>
+                    </div>
+                    <div id="usersTab" class="tab-pane">
+                        <h3>Registered Users</h3>
+                        <div class="admin-users-list" id="adminUsersList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="productFormModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="productFormTitle">Add Product</h2>
+                <button class="close-btn" id="closeProductForm">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm">
+                    <input type="hidden" id="productId">
+                    <div class="form-group">
+                        <label for="productCategory">Category *</label>
+                        <select id="productCategory" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productName">Product Name *</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Description</label>
+                        <textarea id="productDescription" rows="2"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productPrice">Price (₹) *</label>
+                            <input type="number" id="productPrice" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productStock">Stock *</label>
+                            <input type="number" id="productStock" min="0" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productUnit">Unit *</label>
+                        <select id="productUnit" required>
+                            <option value="piece">Piece</option>
+                            <option value="kg">Kilogram</option>
+                            <option value="liter">Liter</option>
+                            <option value="packet">Packet</option>
+                            <option value="dozen">Dozen</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Image URL</label>
+                        <input type="url" id="productImage">
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="productAvailable" checked>
+                            Available for sale
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Save Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content" style="max-width: 450px;">
+            <div class="modal-header">
+                <h2 id="authModalTitle">Login</h2>
+                <button class="close-btn" id="closeLogin">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn active" data-tab="login">Login</button>
+                    <button class="auth-tab-btn" data-tab="register">Register</button>
+                </div>
+
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginUsername">Username *</label>
+                        <input type="text" id="loginUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password *</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+
+                <form id="registerForm" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="registerName">Full Name *</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerUsername">Username *</label>
+                        <input type="text" id="registerUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email *</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPhone">Phone *</label>
+                        <input type="tel" id="registerPhone" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerAddress">Address *</label>
+                        <textarea id="registerAddress" rows="2" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password *</label>
+                        <input type="password" id="registerPassword" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Sakri and Sans Kirana Store. All rights reserved.</p>
+            <p>Contact: <a href="tel:+919019722176">+91 019 72 2176</a>| Prabhavati sakri | Hosakote, Karnataka</p>
+            <p>Contact: <a href="tel:+9178999772176">+91 7899 77 2176</a>| Rudresh sakri | Hosakote, Karnataka</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
