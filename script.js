@@ -38,12 +38,12 @@ const CATEGORIES = [
 ];
 
 const DEFAULT_PRODUCTS = [
-  { id: '1', category_id: '1', name: 'Basmati Rice', description: 'Premium quality basmati rice', price: 120, stock_quantity: 50, unit: 'kg', image_url: 'https://unsplash.com/photos/5QgIuuBxKwM/download?force=true', is_available: true },
-  { id: '2', category_id: '1', name: 'Whole Wheat Flour', description: 'Fresh chakki atta', price: 45, stock_quantity: 100, unit: 'kg', image_url: 'https://images.unsplash.com/photo-1589890899789-b6f850db44a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80', is_available: true },
-  { id: '3', category_id: '1', name: 'Toor Dal', description: 'Premium toor dal', price: 140, stock_quantity: 30, unit: 'kg', image_url: 'https://images.unsplash.com/photo-1583495893435-e09f30cfbbeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80', is_available: true },
+  { id: '1', category_id: '1', name: 'Basmati Rice', description: 'Premium quality basmati rice', price: 120, stock_quantity: 50, unit: 'kg', image_url: 'https://th.bing.com/th/id/OSK.HEROV57pCLwZCF3Ha9y3DClsjFRjobs8zkRBbDzhITJDsHU?o=7&cb=12rm=3&rs=1&pid=ImgDetMain&o=7&rm=3', is_available: true },
+  { id: '2', category_id: '1', name: 'Whole Wheat Flour', description: 'Fresh chakki atta', price: 45, stock_quantity: 100, unit: 'kg', image_url: 'https://tse4.mm.bing.net/th/id/OIP.ACkgx6Mo8rCPVzHmNv8FbwHaKv?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3', is_available: true },
+  { id: '3', category_id: '1', name: 'Toor Dal', description: 'Premium toor dal', price: 140, stock_quantity: 30, unit: 'kg', image_url: 'https://th.bing.com/th/id/OIP.Kl8PcymPK_z13boB79ElagHaF6?w=236&h=189&c=7&r=0&o=7&cb=12&dpr=1.1&pid=1.7&rm=3', is_available: true },
   { id: '4', category_id: '2', name: 'Aditya Fresh Milk', description: 'Fresh full cream milk', price: 60, stock_quantity: 25, unit: 'liter', image_url: 'https://images.pexels.com/photos/416656/pexels-photo-416656.jpeg?auto=compress&cs=tinysrgb&w=400', is_available: true },
   { id: '5', category_id: '2', name: 'Curd', description: 'Fresh homemade style curd', price: 50, stock_quantity: 20, unit: 'kg', image_url: 'https://images.pexels.com/photos/3622479/pexels-photo-3622479.jpeg?auto=compress&cs=tinysrgb&w=400', is_available: true },
-  { id: '6', category_id': '2', name: 'Paneer', description: 'Fresh cottage cheese', price: 250, stock_quantity: 15, unit: 'kg', image_url: 'https://images.pexels.com/photos/7129132/pexels-photo-7129132.jpeg?auto=compress&cs=tinysrgb&w=400', is_available: true },
+  { id: '6', category_id: '2', name: 'Paneer', description: 'Fresh cottage cheese', price: 250, stock_quantity: 15, unit: 'kg', image_url: 'https://images.pexels.com/photos/7129132/pexels-photo-7129132.jpeg?auto=compress&cs=tinysrgb&w=400', is_available: true },
   { id: '7', category_id: '3', name: 'Coca Cola', description: 'Refreshing cola drink', price: 40, stock_quantity: 100, unit: 'liter', image_url: 'https://images.pexels.com/photos/50593/coca-cola-cold-drink-soft-drink-coke-50593.jpeg?auto=compress&cs=tinysrgb&w=400', is_available: true },
   { id: '8', category_id: '3', name: 'Fresh Orange Juice', description: 'Packaged orange juice', price: 80, stock_quantity: 40, unit: 'liter', image_url: 'https://images.pexels.com/photos/1337824/pexels-photo-1337824.jpeg?auto=compress&cs=tinysrgb&w=400', is_available: true },
   { id: '9', category_id: '3', name: 'Mineral Water', description: 'Packaged drinking water', price: 20, stock_quantity: 200, unit: 'liter', image_url: 'https://images.pexels.com/photos/327090/pexels-photo-327090.jpeg?auto=compress&cs=tinysrgb&w=400', is_available: true },
@@ -55,7 +55,7 @@ const DEFAULT_PRODUCTS = [
   { id: '15', category_id: '5', name: 'Haldiram Namkeen', description: 'Spicy mixture namkeen', price: 40, stock_quantity: 50, unit: 'packet', image_url: 'https://images.pexels.com/photos/1340116/pexels-photo-1340116.jpeg?auto=compress&cs=tinysrgb&w=400', is_available: true },
   { id: '16', category_id: '6', name: 'Dove Soap', description: 'Moisturizing beauty soap', price: 45, stock_quantity: 70, unit: 'piece', image_url: 'https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=400', is_available: true },
   { id: '17', category_id: '6', name: 'Colgate Toothpaste', description: 'Dental care toothpaste', price: 75, stock_quantity: 80, unit: 'piece', image_url: 'https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=400', is_available: true },
-  { id: '18', category_id: '6', name: 'Clinic Plus Shampoo', description: 'Hair care shampoo', price: 120, stock_quantity: 40, unit: 'piece', image_url: 'https://www.shutterstock.com/image-photo/clinic-plus-shampoo-royalty-free-image-1386164451', is_available: true }
+  { id: '18', category_id: '6', name: 'Clinic Plus Shampoo', description: 'Hair care shampoo', price: 120, stock_quantity: 40, unit: 'piece', image_url: 'https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=400', is_available: true }
 ];
 
 let products = [];
